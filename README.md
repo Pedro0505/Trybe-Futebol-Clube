@@ -134,9 +134,9 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
 
   - Projeto individual;
 
-  - Serão `X` dias de projeto;
+  - Serão `4` dias de projeto;
 
-  - Data de entrega para avaliação final do projeto: `DD/MM/YYYY - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `05/05/2022 14:00`.
 
 ---
 
@@ -145,9 +145,9 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
 ### Antes de começar a desenvolver
 
 1. Clone o repositório
-  * `git clone https://github.com/tryber/sd-0x-trybe-futebol-clube.git`.
+  * `git clone https://github.com/tryber/sd-015-a-trybe-futebol-clube.git`.
   * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-0x-trybe-futebol-clube`
+    * `cd sd-015-a-trybe-futebol-clube`
 
 2. Instale as dependências [**Caso existam**]
   * `npm install`
@@ -159,7 +159,7 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
     * Exemplo: `git checkout master`
   * Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
     * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b joaozinho-sd-0x-trybe-futebol-clube`
+    * Exemplo: `git checkout -b joaozinho-sd-015-a-trybe-futebol-clube`
 
 4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
   * Verifique que as mudanças ainda não estão no _stage_
@@ -174,7 +174,7 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
         * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
 
 5. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-0x-trybe-futebol-clube`
+  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-015-a-trybe-futebol-clube`
 
 6. Crie um novo `Pull Request` _(PR)_
   * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-[nome-do-projeto]/pulls)
@@ -215,7 +215,7 @@ Para garantir a qualidade do código, usaremos o [ESLint](https://eslint.org/) p
 
 Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
 
-- `sd-0x-trybe-futebol-clube/app/backend/package.json`
+- `sd-015-a-trybe-futebol-clube/app/backend/package.json`
 
 Para rodar o `ESLint` em um projeto, basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
 
@@ -248,7 +248,7 @@ Os testes vão utilizar sua aplicação do compose para fazer as validações, p
 
 **Faça essas configurações também para as variáveis de ambiente usadas nesses arquivo:**
 
-`sd-0x-trybe-futebol-clube/app/backend/src/database/config/database.ts`
+`sd-015-a-trybe-futebol-clube/app/backend/src/database/config/database.ts`
 
 ```
 module.exports = {
