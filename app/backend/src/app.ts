@@ -2,12 +2,11 @@ import * as express from 'express';
 
 class App {
   public app: express.Express;
-  // ...
 
   constructor() {
-    // ...
+    this.app = express();
+    this.middleware();
     this.config();
-    // ...
   }
 
   private config():void {
@@ -19,16 +18,17 @@ class App {
     };
 
     this.app.use(accessControl);
-    // ...
   }
 
-  // ...
+  private middleware(): void {
+    this.app.use(express.json());
+  }
+
   public start(PORT: string | number):void {
-    // ...
+    this.app.listen(PORT, () => console.log(`Server listen in port: ${PORT}`));
   }
 }
 
 export { App };
 
-// A execução dos testes de cobertura depende dessa exportação
 export const { app } = new App();
