@@ -9,13 +9,19 @@ export default class MatchesService {
     this._repository = repository;
   }
 
-  public async getAll() {
+  public async getAll(inProgress: string | undefined) {
     const matches = await this._repository.getAll();
 
-    const sucess: IServiceReturnSuccess<IMatches[]> = {
-      code: 200,
-      data: matches,
-    };
+    if (inProgress !== undefined) {
+      const progress = inProgress === 'true';
+      const matchesInProgress = await this._repository.getMatchesInProgress(progress);
+
+      const response: IServiceReturnSuccess<IMatches[]> = { code: 200, data: matchesInProgress };
+
+      return response;
+    }
+
+    const sucess: IServiceReturnSuccess<IMatches[]> = { code: 200, data: matches };
 
     return sucess;
   }
