@@ -14,7 +14,8 @@
     "predev": "npm run build && npm run db:reset",
     "dev": "ts-node ./src/server.ts",
     "postinstall": "if [ ! -z 'cat ./packages.npm' ]; then npm i --ignore-scripts $(cat ./packages.npm); fi",
-    "lint": "eslint ./src --ext .ts"
+    "lint": "eslint ./src --ext .ts",
+    "debug": "tsnd --exit-child ./src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -51,10 +52,13 @@
     "typescript": "4.4.4"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "cors": "2.8.5",
     "dotenv": "10.0.0",
     "express": "4.17.1",
     "jest": "27.4.3",
+    "joi": "^17.6.0",
     "jsonwebtoken": "8.5.1",
     "mysql2": "2.3.3",
     "sequelize": "6.9.0"

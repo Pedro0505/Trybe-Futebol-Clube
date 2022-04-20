@@ -1,12 +1,13 @@
-import * as express from 'express';
+import express from 'express';
+import Factory from './factory';
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
-    this.middleware();
     this.config();
+    this.routes();
   }
 
   private config():void {
@@ -17,11 +18,12 @@ class App {
       next();
     };
 
+    this.app.use(express.json());
     this.app.use(accessControl);
   }
 
-  private middleware(): void {
-    this.app.use(express.json());
+  private routes() {
+    this.app.use('/login', Factory.userRouter);
   }
 
   public start(PORT: string | number):void {
