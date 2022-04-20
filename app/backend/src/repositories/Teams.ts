@@ -1,18 +1,18 @@
-import { ILoginRequest } from '../interfaces/routes/login';
-import Users from '../database/models/Users';
+import { ITeams } from '../interfaces/routes/team';
+import Teams from '../database/models/Teams';
 
 export default class TeamsRepository {
-  private _lint: string;
+  constructor(private _model = Teams) {}
 
-  constructor() {
-    this._lint = '';
+  public async getAll(): Promise<ITeams[]> {
+    const teams = await this._model.findAll();
+
+    return teams;
   }
 
-  async getUserByEmail(email: string): Promise<ILoginRequest | null> {
-    this._lint = 'chato';
+  public async getById(id: string): Promise<ITeams | null> {
+    const teams = await this._model.findOne({ where: { id } });
 
-    const result = await Users.findOne({ where: { email } });
-
-    return result;
+    return teams;
   }
 }

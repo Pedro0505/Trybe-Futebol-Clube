@@ -24,6 +24,7 @@ class App {
 
   private routes() {
     this.app.use('/login', Factory.userRouter);
+    this.app.use('/teams', Factory.teamsRouter);
   }
 
   public start(PORT: string | number):void {

@@ -23,23 +23,23 @@ const matches = {
     autoIncrement: true,
     primaryKey: true,
   },
-  home_team: {
+  homeTeam: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  home_team_goals: {
+  homeTeamGoals: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  away_team: {
+  awayTeam: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  away_team_goals: {
+  awayTeamGoals: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  in_progress: {
+  inProgress: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
@@ -54,10 +54,10 @@ const config = {
 
 Matches.init(matches, config);
 
-Matches.belongsTo(Teams, { foreignKey: 'home_team', as: 'homeTeam' });
-Matches.belongsTo(Teams, { foreignKey: 'away_team', as: 'awayTeam' });
+Matches.belongsTo(Teams, { foreignKey: 'homeTeam', as: 'teamHome' });
+Matches.belongsTo(Teams, { foreignKey: 'awayTeam', as: 'teamAway' });
 
-Teams.hasMany(Matches, { foreignKey: 'home_team', as: 'homeTeam' });
-Teams.hasMany(Matches, { foreignKey: 'away_team', as: 'awayTeam' });
+Teams.hasMany(Matches, { foreignKey: 'homeTeam', as: 'teamHome' });
+Teams.hasMany(Matches, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 export default Matches;
