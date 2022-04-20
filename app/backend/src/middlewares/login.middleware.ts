@@ -7,7 +7,8 @@ const LoginValidate = (req: Request, res: Response, next: NextFunction) => {
   if (error) {
     const [code, message] = error.message.split('|');
     const codeNum = +code;
-    return res.status(codeNum).json({ message });
+    const validCode = Number.isNaN(codeNum) ? 400 : codeNum;
+    return res.status(validCode).json({ message });
   }
 
   next();

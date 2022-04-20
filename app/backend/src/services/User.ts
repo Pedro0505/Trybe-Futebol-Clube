@@ -24,7 +24,7 @@ export default class UserService {
 
     if (!verify) return incorrectCredential;
 
-    const token = JwtGenerate({ email, id: user.user.id as number });
+    const token = JwtGenerate({ email, id: user.user.id, role: user.user.role });
 
     const sucess: IServiceReturnSuccess<ILoginResponse> = {
       code: 200,

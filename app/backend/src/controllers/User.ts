@@ -16,4 +16,10 @@ export default class UserController {
 
     return res.status(code).json(data);
   };
+
+  public validateUser = async (req: Request, res: Response) => {
+    const { role } = req.tokenData;
+
+    return res.status(200).json(role);
+  };
 }

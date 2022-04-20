@@ -2,6 +2,7 @@ import { Router } from 'express';
 import LoginValidate from '../middlewares/login.middleware';
 import UserController from '../controllers/User';
 import IRoutes from '../interfaces/routes/route';
+import auth from '../middlewares/auth.middleware';
 
 class UserRouter implements IRoutes {
   private _route: Router;
@@ -16,6 +17,12 @@ class UserRouter implements IRoutes {
       '/',
       LoginValidate,
       this._controller.userLogin,
+    );
+
+    this._route.get(
+      '/validate',
+      auth,
+      this._controller.validateUser,
     );
   }
 
