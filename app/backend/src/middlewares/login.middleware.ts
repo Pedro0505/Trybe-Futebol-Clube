@@ -7,7 +7,7 @@ const LoginValidate = (req: Request, res: Response, next: NextFunction) => {
   if (error) {
     const [code, message] = error.message.split('|');
     const codeNum = +code;
-    return res.status(codeNum).json({ error: message });
+    return res.status(codeNum).json({ message });
   }
 
   next();
