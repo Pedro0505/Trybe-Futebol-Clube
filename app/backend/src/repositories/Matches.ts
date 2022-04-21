@@ -1,10 +1,11 @@
 import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
+import { IMatchesTeams } from '../interfaces/routes/matches';
 
 export default class MatchesRepository {
   constructor(private _model = Matches) {}
 
-  public async getAll() {
+  public async getAll(): Promise<IMatchesTeams[]> {
     const matches = await this._model.findAll({
       include: [
         { model: Teams, as: 'teamHome', attributes: { exclude: ['id'] } },
@@ -15,7 +16,7 @@ export default class MatchesRepository {
     return matches;
   }
 
-  public async getMatchesInProgress(inProgress: boolean) {
+  public async getMatchesInProgress(inProgress: boolean): Promise<IMatchesTeams[]> {
     const matches = await this._model.findAll({
       where: { inProgress },
       include: [

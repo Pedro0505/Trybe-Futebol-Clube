@@ -14,6 +14,10 @@ class Matches extends Model {
   awayTeamGoals!: number;
 
   inProgress!: boolean;
+
+  teamHome?: { teamName: string; };
+
+  teamAway?: { teamName: string; };
 }
 
 const matches = {

@@ -8,6 +8,6 @@ export interface IMatches {
 }
 
 export interface IMatchesTeams extends IMatches {
-  teamHome: { teamName: string; };
-  teamAway: { teamName: string; };
+  teamHome?: { teamName: string; };
+  teamAway?: { teamName: string; };
 }
