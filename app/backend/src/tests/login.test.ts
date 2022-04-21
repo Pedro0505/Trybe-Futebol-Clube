@@ -4,8 +4,9 @@ import chaiHttp from 'chai-http';
 import jwt from 'jsonwebtoken';
 import { app } from '../app';
 import { UserRepository } from '../repositories';
-import { invalidBodyLogin, invalidUserLogin, responseDB, validUserLogin } from './fakeData/users';
+import { invalidBodyLogin, invalidUserLogin, responseDB, validUserLogin } from './mock/users';
 import { JWT_SECRET } from '../helpers/JwtGenerate';
+import Users from '../database/models/Users';
 
 chai.use(chaiHttp);
 
@@ -15,11 +16,11 @@ describe('Teste da rota de login', () => {
   describe('POST /login', () => {
     describe('Testando caso de falha com senha invalida e sucesso', () => {
       before(() => {
-        sinon.stub(UserRepository.prototype, 'getUserByEmail').resolves(responseDB);
+        sinon.stub(Users, 'findOne').resolves(responseDB as Users);
       });
     
       after(() => {
-        (UserRepository.prototype.getUserByEmail as sinon.SinonStub).restore();
+        (Users.findOne as sinon.SinonStub).restore();
       });
     
       it('Teste de caso de sucesso do login', async () => {
@@ -44,11 +45,11 @@ describe('Teste da rota de login', () => {
   
     describe('Quando o email enviado é incorreto', () => {
       before(() => {
-        sinon.stub(UserRepository.prototype, 'getUserByEmail').resolves(null);
+        sinon.stub(Users, 'findOne').resolves(null);
       });
     
       after(() => {
-        (UserRepository.prototype.getUserByEmail as sinon.SinonStub).restore();
+        (Users.findOne as sinon.SinonStub).restore();
       });
   
       it('Email enviado errado', async () => {
@@ -114,11 +115,11 @@ describe('Teste da rota de login', () => {
   
   describe('GET /login/validate', () => {
     before(() => {
-      sinon.stub(UserRepository.prototype, 'getUserByEmail').resolves(responseDB);
+      sinon.stub(Users, 'findOne').resolves(responseDB as Users);
     });
   
     after(() => {
-      (UserRepository.prototype.getUserByEmail as sinon.SinonStub).restore();
+      (Users.findOne as sinon.SinonStub).restore();
     });
 
     it('Teste caso de sucesso do validate', async () => {

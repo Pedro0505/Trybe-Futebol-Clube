@@ -3,8 +3,9 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { app } from '../app';
 import { MatchesRepository } from '../repositories';
-import { allMatches, allMatchesFinished, allMatchesInProgress } from './fakeData/matches';
+import { allMatches, allMatchesFinished, allMatchesInProgress } from './mock/matches';
 import { IMatchesTeams } from '../interfaces/routes/matches';
+import Matches from '../database/models/Matches';
 
 chai.use(chaiHttp);
 
@@ -14,11 +15,11 @@ describe('Testando a rota de matches', () => {
 
   describe('GET /matches', () => {
     before(() => {
-      sinon.stub(MatchesRepository.prototype, 'getAll').resolves(allMatches);
+      sinon.stub(Matches, 'findAll').resolves(allMatches as Matches[]);
     });
   
     after(() => {
-      (MatchesRepository.prototype.getAll as sinon.SinonStub).restore();
+      (Matches.findAll as sinon.SinonStub).restore();
     });
 
     it('Testando se a rota retorna todas as partidas', async () => {
@@ -35,11 +36,11 @@ describe('Testando a rota de matches', () => {
 
   describe('GET /matches?inProgress=true', () => {
     before(() => {
-      sinon.stub(MatchesRepository.prototype, 'getMatchesInProgress').resolves(allMatchesInProgress);
+      sinon.stub(Matches, 'findAll').resolves(allMatchesInProgress as Matches[]);
     });
   
     after(() => {
-      (MatchesRepository.prototype.getMatchesInProgress as sinon.SinonStub).restore();
+      (Matches.findAll as sinon.SinonStub).restore();
     });
 
     it('Testando se todas as partidas estão em progresso',async () => {
@@ -57,11 +58,11 @@ describe('Testando a rota de matches', () => {
 
   describe('GET /matches?inProgress=false', () => {
     before(() => {
-      sinon.stub(MatchesRepository.prototype, 'getMatchesInProgress').resolves(allMatchesFinished);
+      sinon.stub(Matches, 'findAll').resolves(allMatchesFinished as Matches[]);
     });
   
     after(() => {
-      (MatchesRepository.prototype.getMatchesInProgress as sinon.SinonStub).restore();
+      (Matches.findAll as sinon.SinonStub).restore();
     });
 
     it('Testando se todas as partidas estão terminadas',async () => {

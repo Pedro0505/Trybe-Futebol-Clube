@@ -1,10 +1,8 @@
 export const responseDB = {
-  user: {
-    id: 1,
-    username: 'random',
-    role: 'admin',
-    email: 'random@person.com',
-  },
+  id: 1,
+  username: 'random',
+  role: 'admin',
+  email: 'random@person.com',
   password: '$2a$12$RuNoPGBCBgRg9a.K82PE/u6vIRnpIwqjlF9UxBd6IRg5wDE12FUA2',
 };
 
