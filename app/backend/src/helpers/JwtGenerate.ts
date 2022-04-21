@@ -9,7 +9,7 @@ const jwtConfig: SignOptions = {
   algorithm: 'HS256',
 };
 
-const JWT_SECRET = fs.readFileSync(path.resolve(__dirname, '../../jwt.evaluation.key'), {
+export const JWT_SECRET = fs.readFileSync(path.resolve(__dirname, '../../jwt.evaluation.key'), {
   encoding: 'utf-8',
 });
 

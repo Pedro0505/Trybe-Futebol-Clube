@@ -5,14 +5,18 @@ export default class UserRepository {
   constructor(private _model = Users) {}
 
   async getUserByEmail(userEmail: string): Promise<IUserRepository | null> {
-    const {
-      email,
-      id,
-      password,
-      role,
-      username,
-    } = await this._model.findOne({ where: { email: userEmail } }) as IUser;
+    const user = await this._model.findOne({ where: { email: userEmail } }) as IUser | null;
 
-    return { user: { email, id, role, username }, password };
+    if (!user) return null;
+
+    return {
+      user: {
+        email: user.email,
+        id: user.id,
+        role: user.role,
+        username: user.username,
+      },
+      password: user.password,
+    };
   }
 }

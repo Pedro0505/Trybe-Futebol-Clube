@@ -12,10 +12,7 @@ export default class TeamsService {
   public async getAll() {
     const teams = await this._repository.getAll();
 
-    const sucess: IServiceReturnSuccess<ITeams[]> = {
-      code: 200,
-      data: teams,
-    };
+    const sucess: IServiceReturnSuccess<ITeams[]> = { code: 200, data: teams };
 
     return sucess;
   }
