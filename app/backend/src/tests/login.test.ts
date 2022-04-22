@@ -3,7 +3,6 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import jwt from 'jsonwebtoken';
 import { app } from '../app';
-import { UserRepository } from '../repositories';
 import { invalidBodyLogin, invalidUserLogin, responseDB, validUserLogin } from './mock/users';
 import { JWT_SECRET } from '../helpers/JwtGenerate';
 import Users from '../database/models/Users';

@@ -2,7 +2,6 @@ import sinon from 'sinon';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { app } from '../app';
-import { MatchesRepository } from '../repositories';
 import { allMatches, allMatchesFinished, allMatchesInProgress } from './mock/matches';
 import { IMatchesTeams } from '../interfaces/routes/matches';
 import Matches from '../database/models/Matches';
