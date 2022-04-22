@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import { IDecoded } from '../interfaces/helpers';
 import { JWT_SECRET } from '../helpers/JwtGenerate';
 

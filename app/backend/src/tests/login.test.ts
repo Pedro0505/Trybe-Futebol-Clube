@@ -1,7 +1,7 @@
-import sinon from 'sinon';
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import jwt from 'jsonwebtoken';
+import * as sinon from 'sinon';
+import * as chai from 'chai';
+import chaiHttp = require('chai-http');
+import * as jwt from 'jsonwebtoken';
 import { app } from '../app';
 import { invalidBodyLogin, invalidUserLogin, responseDB, validUserLogin } from './mock/users';
 import { JWT_SECRET } from '../helpers/JwtGenerate';

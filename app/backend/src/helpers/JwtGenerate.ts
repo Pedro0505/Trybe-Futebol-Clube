@@ -1,10 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import jwt, { SignOptions } from 'jsonwebtoken';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as jwt from 'jsonwebtoken';
 import 'dotenv/config';
 import { IPayloadJwt } from '../interfaces/helpers';
 
-const jwtConfig: SignOptions = {
+const jwtConfig: jwt.SignOptions = {
   expiresIn: '1d',
   algorithm: 'HS256',
 };
