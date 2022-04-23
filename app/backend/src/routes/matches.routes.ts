@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import auth from '../middlewares/auth.middleware';
 import MatchesController from '../controllers/Matches';
 import IRoutes from '../interfaces/routes/route';
 
@@ -14,6 +15,17 @@ class MatchesRouter implements IRoutes {
     this._route.get(
       '/',
       this._controller.getAll,
+    );
+
+    this._route.post(
+      '/',
+      auth,
+      this._controller.create,
+    );
+
+    this._route.patch(
+      '/:id/finish',
+      this._controller.finishedMatches,
     );
   }
 

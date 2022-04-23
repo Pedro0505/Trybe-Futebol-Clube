@@ -1,6 +1,6 @@
 import Teams from '../database/models/Teams';
 import Matches from '../database/models/Matches';
-import { IMatchesTeams } from '../interfaces/routes/matches';
+import { IMatcheCreateRequest, IMatches, IMatchesTeams } from '../interfaces/routes/matches';
 
 export default class MatchesRepository {
   constructor(private _model = Matches) {}
@@ -26,5 +26,17 @@ export default class MatchesRepository {
     });
 
     return matches;
+  }
+
+  public async createMatches(matche: IMatcheCreateRequest): Promise<IMatches> {
+    const createdMatche = await this._model.create(matche);
+
+    return createdMatche;
+  }
+
+  public async finishedMatches(id: string) {
+    const createdMatche = await this._model.update({ inProgress: false }, { where: { id } });
+
+    return createdMatche;
   }
 }
