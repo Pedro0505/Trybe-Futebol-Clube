@@ -1,23 +1,23 @@
-import * as sinon from 'sinon';
-import * as chai from 'chai';
-import chaiHttp = require('chai-http');
-import * as jwt from 'jsonwebtoken';
-import { app } from '../app';
-import { invalidBodyLogin, invalidUserLogin, responseDB, validUserLogin } from './mock/users';
-import { JWT_SECRET } from '../helpers/JwtGenerate';
-import Users from '../database/models/Users';
-import Teams from '../database/models/Teams';
-import { allTeams, oneTeam } from './mock/teams';
-import { ITeams } from '../interfaces/routes/team';
-import { allMatches, allMatchesFinished, allMatchesInProgress, equalTeamsResquest, notFoundTeam, requestCreateMatche, responseCreateMatche } from './mock/matches';
-import { IMatchesTeams } from '../interfaces/routes/matches';
-import Matches from '../database/models/Matches';
+// import * as sinon from 'sinon';
+// import * as chai from 'chai';
+// import chaiHttp = require('chai-http');
+// import * as jwt from 'jsonwebtoken';
+// import { app } from '../app';
+// import { invalidBodyLogin, invalidUserLogin, responseDB, validUserLogin } from './mock/users';
+// import { JWT_SECRET } from '../helpers/JwtGenerate';
+// import Users from '../database/models/Users';
+// import Teams from '../database/models/Teams';
+// import { allTeams, oneTeam } from './mock/teams';
+// import { ITeams } from '../interfaces/routes/team';
+// import { allMatches, allMatchesFinished, allMatchesInProgress, equalTeamsResquest, notFoundTeam, requestCreateMatche, responseCreateMatche } from './mock/matches';
+// import { IMatchesTeams } from '../interfaces/routes/matches';
+// import Matches from '../database/models/Matches';
 
-chai.use(chaiHttp);
+// chai.use(chaiHttp);
 
-const { expect } = chai;
+// const { expect } = chai;
 
-describe('teste de integração', () => {
+// describe('teste de integração', () => {
 // describe('Teste da rota de login', () => {
 //   describe('POST /login', () => {
 //     describe('Testando caso de falha com senha invalida e sucesso', () => {
@@ -153,213 +153,213 @@ describe('teste de integração', () => {
 //   });
 // })
 
-describe('Testando a rota de teams', () => {
+// describe('Testando a rota de teams', () => {
 
-  describe('GET /teams', () => {
-    before(() => {
-      sinon.stub(Teams, 'findAll').resolves(allTeams as Teams[]);
-    });
+//   describe('GET /teams', () => {
+//     before(() => {
+//       sinon.stub(Teams, 'findAll').resolves(allTeams as Teams[]);
+//     });
   
-    after(() => {
-      (Teams.findAll as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Teams.findAll as sinon.SinonStub).restore();
+//     });
 
-    it('Testando caso de sucesso', async () => {
-      const { status, body } = await chai.request(app).get('/teams');
+//     it('Testando caso de sucesso', async () => {
+//       const { status, body } = await chai.request(app).get('/teams');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('array');
-      expect(body).to.be.length(5);
-      body.forEach((e: ITeams) => {
-        expect(e).to.include.all.keys('id', 'teamName');
-      });
-    });
-  });
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('array');
+//       expect(body).to.be.length(5);
+//       body.forEach((e: ITeams) => {
+//         expect(e).to.include.all.keys('id', 'teamName');
+//       });
+//     });
+//   });
 
-  describe('GET /teams/:id', () => {
-    before(() => {
-      sinon.stub(Teams, 'findOne').resolves(oneTeam as Teams);
-    });
+//   describe('GET /teams/:id', () => {
+//     before(() => {
+//       sinon.stub(Teams, 'findOne').resolves(oneTeam as Teams);
+//     });
   
-    after(() => {
-      (Teams.findOne as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Teams.findOne as sinon.SinonStub).restore();
+//     });
 
-    it('Testando caso de sucesso', async () => {
-      const { status, body } = await chai.request(app).get('/teams/5');
+//     it('Testando caso de sucesso', async () => {
+//       const { status, body } = await chai.request(app).get('/teams/5');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('object');
-      expect(body.id).to.be.equal(5);
-      expect(body.teamName).to.be.equal('Cruzeiro');
-      expect(body).to.include.all.keys('id', 'teamName');
-    });
-  });
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('object');
+//       expect(body.id).to.be.equal(5);
+//       expect(body.teamName).to.be.equal('Cruzeiro');
+//       expect(body).to.include.all.keys('id', 'teamName');
+//     });
+//   });
 
-  describe('GET /teams/:id quando o time não é encontrado', () => {
-    before(() => {
-      sinon.stub(Teams, 'findOne').resolves(null);
-    });
+//   describe('GET /teams/:id quando o time não é encontrado', () => {
+//     before(() => {
+//       sinon.stub(Teams, 'findOne').resolves(null);
+//     });
   
-    after(() => {
-      (Teams.findOne as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Teams.findOne as sinon.SinonStub).restore();
+//     });
 
-    it('Quando passa um id que não existe', async () => {
-      const { status, body } = await chai.request(app).get('/teams/11111111');
+//     it('Quando passa um id que não existe', async () => {
+//       const { status, body } = await chai.request(app).get('/teams/11111111');
 
-      expect(status).to.be.equal(404);
-      expect(body).to.be.an('object');
-      expect(body).to.be.deep.equal({ message: 'Team not found' });
-    });
-  });
-});
+//       expect(status).to.be.equal(404);
+//       expect(body).to.be.an('object');
+//       expect(body).to.be.deep.equal({ message: 'Team not found' });
+//     });
+//   });
+// });
 
-describe('Testando a rota de matches', () => {
+// describe('Testando a rota de matches', () => {
 
-  describe('GET /matches', () => {
-    before(() => {
-      sinon.stub(Matches, 'findAll').resolves(allMatches as Matches[]);
-    });
+//   describe('GET /matches', () => {
+//     before(() => {
+//       sinon.stub(Matches, 'findAll').resolves(allMatches as Matches[]);
+//     });
   
-    after(() => {
-      (Matches.findAll as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Matches.findAll as sinon.SinonStub).restore();
+//     });
 
-    it('Testando se a rota retorna todas as partidas', async () => {
-      const { body, status } = await chai.request(app).get('/matches');
+//     it('Testando se a rota retorna todas as partidas', async () => {
+//       const { body, status } = await chai.request(app).get('/matches');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('array');
-      expect(body).to.be.length(3);
-      body.forEach((e: IMatchesTeams) => {
-        expect(e).to.include.all.keys('id', 'homeTeam', 'homeTeamGoals', 'awayTeam', 'awayTeamGoals', 'inProgress', 'teamHome', 'teamAway');
-      });
-    })
-  });
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('array');
+//       expect(body).to.be.length(3);
+//       body.forEach((e: IMatchesTeams) => {
+//         expect(e).to.include.all.keys('id', 'homeTeam', 'homeTeamGoals', 'awayTeam', 'awayTeamGoals', 'inProgress', 'teamHome', 'teamAway');
+//       });
+//     })
+//   });
 
-  describe('GET /matches?inProgress=true', () => {
-    before(() => {
-      sinon.stub(Matches, 'findAll').resolves(allMatchesInProgress as Matches[]);
-    });
+//   describe('GET /matches?inProgress=true', () => {
+//     before(() => {
+//       sinon.stub(Matches, 'findAll').resolves(allMatchesInProgress as Matches[]);
+//     });
   
-    after(() => {
-      (Matches.findAll as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Matches.findAll as sinon.SinonStub).restore();
+//     });
 
-    it('Testando se todas as partidas estão em progresso',async () => {
-      const { body, status } = await chai.request(app).get('/matches?inProgress=true');
+//     it('Testando se todas as partidas estão em progresso',async () => {
+//       const { body, status } = await chai.request(app).get('/matches?inProgress=true');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('array');
-      expect(body).to.be.length(3);
-      body.forEach((e: IMatchesTeams) => {
-        expect(e).to.include.all.keys('id', 'homeTeam', 'homeTeamGoals', 'awayTeam', 'awayTeamGoals', 'inProgress', 'teamHome', 'teamAway');
-        expect(e.inProgress).to.be.true;
-      });
-    })
-  })
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('array');
+//       expect(body).to.be.length(3);
+//       body.forEach((e: IMatchesTeams) => {
+//         expect(e).to.include.all.keys('id', 'homeTeam', 'homeTeamGoals', 'awayTeam', 'awayTeamGoals', 'inProgress', 'teamHome', 'teamAway');
+//         expect(e.inProgress).to.be.true;
+//       });
+//     })
+//   })
 
-  describe('GET /matches?inProgress=false', () => {
-    before(() => {
-      sinon.stub(Matches, 'findAll').resolves(allMatchesFinished as Matches[]);
-    });
+//   describe('GET /matches?inProgress=false', () => {
+//     before(() => {
+//       sinon.stub(Matches, 'findAll').resolves(allMatchesFinished as Matches[]);
+//     });
   
-    after(() => {
-      (Matches.findAll as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Matches.findAll as sinon.SinonStub).restore();
+//     });
 
-    it('Testando se todas as partidas estão terminadas',async () => {
-      const { body, status } = await chai.request(app).get('/matches?inProgress=false');
+//     it('Testando se todas as partidas estão terminadas',async () => {
+//       const { body, status } = await chai.request(app).get('/matches?inProgress=false');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('array');
-      expect(body).to.be.length(3);
-      body.forEach((e: IMatchesTeams) => {
-        expect(e).to.include.all.keys('id', 'homeTeam', 'homeTeamGoals', 'awayTeam', 'awayTeamGoals', 'inProgress', 'teamHome', 'teamAway');
-        expect(e.inProgress).to.be.false;
-      });
-    })
-  })
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('array');
+//       expect(body).to.be.length(3);
+//       body.forEach((e: IMatchesTeams) => {
+//         expect(e).to.include.all.keys('id', 'homeTeam', 'homeTeamGoals', 'awayTeam', 'awayTeamGoals', 'inProgress', 'teamHome', 'teamAway');
+//         expect(e.inProgress).to.be.false;
+//       });
+//     })
+//   })
 
-  describe('POST /matches', () => {
-    before(() => {
-      sinon.stub(Users, 'findOne').resolves(responseDB as Users);
-      sinon.stub(Teams, 'findAll').resolves(allTeams as Teams[]);
-      sinon.stub(Matches, 'create').resolves(responseCreateMatche as Matches);
-    });
+//   describe('POST /matches', () => {
+//     before(() => {
+//       sinon.stub(Users, 'findOne').resolves(responseDB as Users);
+//       sinon.stub(Teams, 'findAll').resolves(allTeams as Teams[]);
+//       sinon.stub(Matches, 'create').resolves(responseCreateMatche as Matches);
+//     });
   
-    after(() => {
-      (Users.findOne as sinon.SinonStub).restore();
-      (Teams.findAll as sinon.SinonStub).restore();
-      (Matches.create as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Users.findOne as sinon.SinonStub).restore();
+//       (Teams.findAll as sinon.SinonStub).restore();
+//       (Matches.create as sinon.SinonStub).restore();
+//     });
 
-    it('Caso de sucesso da criacão da matche', async () => {
-      const { body: { token } } = await chai.request(app).post('/login').send(validUserLogin);
+//     it('Caso de sucesso da criacão da matche', async () => {
+//       const { body: { token } } = await chai.request(app).post('/login').send(validUserLogin);
 
-      const { body, status } = await chai.request(app).post('/matches').send(requestCreateMatche).set({ 'Authorization': token });
+//       const { body, status } = await chai.request(app).post('/matches').send(requestCreateMatche).set({ 'Authorization': token });
 
-      expect(status).to.be.equal(201);
-      expect(body).to.be.an('object');
-      expect(body).to.be.deep.equal(responseCreateMatche);
-    });
+//       expect(status).to.be.equal(201);
+//       expect(body).to.be.an('object');
+//       expect(body).to.be.deep.equal(responseCreateMatche);
+//     });
 
-    it('Caso de falha da criacão da matche | Quando os times são iguais', async () => {
-      const { body: { token } } = await chai.request(app).post('/login').send(validUserLogin);
+//     it('Caso de falha da criacão da matche | Quando os times são iguais', async () => {
+//       const { body: { token } } = await chai.request(app).post('/login').send(validUserLogin);
 
-      const { body, status } = await chai.request(app).post('/matches').send(equalTeamsResquest).set({ 'Authorization': token });
+//       const { body, status } = await chai.request(app).post('/matches').send(equalTeamsResquest).set({ 'Authorization': token });
 
-      expect(status).to.be.equal(401);
-      expect(body).to.be.an('object');
-      expect(body).to.be.deep.equal({message: 'It is not possible to create a match with two equal teams'});
-    });
+//       expect(status).to.be.equal(401);
+//       expect(body).to.be.an('object');
+//       expect(body).to.be.deep.equal({message: 'It is not possible to create a match with two equal teams'});
+//     });
 
-    it('Caso de falha da criacão da matche | Quando os times não existe', async () => {
-      const { body: { token } } = await chai.request(app).post('/login').send(validUserLogin);
+//     it('Caso de falha da criacão da matche | Quando os times não existe', async () => {
+//       const { body: { token } } = await chai.request(app).post('/login').send(validUserLogin);
 
-      const { body, status } = await chai.request(app).post('/matches').send(notFoundTeam).set({ 'Authorization': token });
+//       const { body, status } = await chai.request(app).post('/matches').send(notFoundTeam).set({ 'Authorization': token });
 
-      expect(status).to.be.equal(404);
-      expect(body).to.be.an('object');
-      expect(body).to.be.deep.equal({ message: 'There is no team with such id!' });
-    });
-  });
+//       expect(status).to.be.equal(404);
+//       expect(body).to.be.an('object');
+//       expect(body).to.be.deep.equal({ message: 'There is no team with such id!' });
+//     });
+//   });
 
-  describe('PATCH /matches/:id/finish', () => {
-    before(() => {
-      sinon.stub(Matches, 'update').resolves(undefined);
-    });
+//   describe('PATCH /matches/:id/finish', () => {
+//     before(() => {
+//       sinon.stub(Matches, 'update').resolves(undefined);
+//     });
   
-    after(() => {
-      (Matches.update as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Matches.update as sinon.SinonStub).restore();
+//     });
 
-    it('Caso de sucesso de terminar uma partida', async () => {
-      const { body, status } = await chai.request(app).patch('/matches/1/finish');
+//     it('Caso de sucesso de terminar uma partida', async () => {
+//       const { body, status } = await chai.request(app).patch('/matches/1/finish');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('object');
-      expect(body).to.be.deep.equal({ message: 'Finished game' });
-    });
-  });
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('object');
+//       expect(body).to.be.deep.equal({ message: 'Finished game' });
+//     });
+//   });
 
-  describe('PATCH /matches/:id', () => {
-    before(() => {
-      sinon.stub(Matches, 'update').resolves(undefined);
-    });
+//   describe('PATCH /matches/:id', () => {
+//     before(() => {
+//       sinon.stub(Matches, 'update').resolves(undefined);
+//     });
   
-    after(() => {
-      (Matches.update as sinon.SinonStub).restore();
-    });
+//     after(() => {
+//       (Matches.update as sinon.SinonStub).restore();
+//     });
 
-    it('Caso de sucesso de terminar uma partida', async () => {
-      const { body, status } = await chai.request(app).patch('/matches/1');
+//     it('Caso de sucesso de terminar uma partida', async () => {
+//       const { body, status } = await chai.request(app).patch('/matches/1');
 
-      expect(status).to.be.equal(200);
-      expect(body).to.be.an('object');
-      expect(body).to.be.deep.equal({ message: 'Updated game' });
-    });
-  });
-});
-});
+//       expect(status).to.be.equal(200);
+//       expect(body).to.be.an('object');
+//       expect(body).to.be.deep.equal({ message: 'Updated game' });
+//     });
+//   });
+// });
+// });
