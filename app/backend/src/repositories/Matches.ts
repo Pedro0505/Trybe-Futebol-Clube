@@ -40,19 +40,10 @@ export default class MatchesRepository {
   }
 
   public async finishedMatches(id: string) {
-    const createdMatche = await this._model.update({ inProgress: false }, { where: { id } });
-
-    return createdMatche;
+    await this._model.update({ inProgress: false }, { where: { id } });
   }
 
   public async updateMatches({ awayTeamGoals, homeTeamGoals }: IMatcheUpdateRequest, id: string) {
-    const updatedMatche = await this._model.update(
-      {
-        awayTeamGoals,
-        homeTeamGoals },
-      { where: { id } },
-    );
-
-    return updatedMatche;
+    await this._model.update({ awayTeamGoals, homeTeamGoals }, { where: { id } });
   }
 }

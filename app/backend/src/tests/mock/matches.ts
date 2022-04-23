@@ -129,3 +129,36 @@ export const allMatchesFinished = [
     teamName: 'Minas Brasília'
   }
 }]
+
+export const requestCreateMatche = {
+  homeTeam: 1, 
+  awayTeam: 2, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+  inProgress: true
+}
+
+export const responseCreateMatche = {
+  id: 1,
+  homeTeam: 16, 
+  awayTeam: 8, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+  inProgress: true
+}
+
+export const equalTeamsResquest = {
+  homeTeam: 2, 
+  awayTeam: 2, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+  inProgress: true
+}
+
+export const notFoundTeam ={ 
+  homeTeam: 1111111, 
+  awayTeam: 2, 
+  homeTeamGoals: 2,
+  awayTeamGoals: 2,
+  inProgress: true
+};
