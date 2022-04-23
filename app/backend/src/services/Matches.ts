@@ -1,4 +1,4 @@
-import { IMatcheCreateRequest, IMatches } from '../interfaces/routes/matches';
+import { IMatcheCreateRequest, IMatches, IMatcheUpdateRequest } from '../interfaces/routes/matches';
 import { IServiceReturnError, IServiceReturnSuccess } from '../interfaces/service';
 import { MatchesRepository, TeamsRepository } from '../repositories';
 
@@ -63,8 +63,10 @@ export default class MatchesService {
   }
 
   public async finishedMatches(id: string) {
-    const updated = await this._repository.finishedMatches(id);
+    await this._repository.finishedMatches(id);
+  }
 
-    return updated;
+  public async updateMatches(gols: IMatcheUpdateRequest, id: string) {
+    await this._repository.updateMatches(gols, id);
   }
 }

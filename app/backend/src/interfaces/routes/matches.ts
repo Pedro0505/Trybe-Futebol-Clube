@@ -14,3 +14,8 @@ export interface IMatchesTeams extends IMatches {
   teamHome?: { teamName: string; };
   teamAway?: { teamName: string; };
 }
+
+export interface IMatcheUpdateRequest {
+  homeTeamGoals: number;
+  awayTeamGoals: number;
+}

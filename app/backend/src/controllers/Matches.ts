@@ -18,9 +18,19 @@ export default class MatchesController {
   };
 
   public create = async (req: Request, res: Response) => {
-    const match = req.body as IMatcheCreateRequest;
+    const { awayTeam,
+      homeTeam,
+      awayTeamGoals,
+      homeTeamGoals,
+      inProgress } = req.body as IMatcheCreateRequest;
 
-    const { code, data } = await this._service.create(match);
+    const { code, data } = await this._service.create({
+      awayTeam,
+      homeTeam,
+      awayTeamGoals,
+      homeTeamGoals,
+      inProgress,
+    });
 
     return res.status(code).json(data);
   };
@@ -31,5 +41,14 @@ export default class MatchesController {
     await this._service.finishedMatches(id as string);
 
     return res.status(200).json({ message: 'Finished game' });
+  };
+
+  public updateMatches = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+
+    await this._service.updateMatches({ homeTeamGoals, awayTeamGoals }, id as string);
+
+    return res.status(200).json({ message: 'Updated game' });
   };
 }

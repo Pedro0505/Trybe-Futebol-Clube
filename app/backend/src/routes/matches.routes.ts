@@ -12,21 +12,13 @@ class MatchesRouter implements IRoutes {
     this._route = router;
     this._controller = controller;
 
-    this._route.get(
-      '/',
-      this._controller.getAll,
-    );
+    this._route.get('/', this._controller.getAll);
 
-    this._route.post(
-      '/',
-      auth,
-      this._controller.create,
-    );
+    this._route.post('/', auth, this._controller.create);
 
-    this._route.patch(
-      '/:id/finish',
-      this._controller.finishedMatches,
-    );
+    this._route.patch('/:id/finish', this._controller.finishedMatches);
+
+    this._route.patch('/:id', this._controller.updateMatches);
   }
 
   public get route(): Router {
