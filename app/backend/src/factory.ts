@@ -1,20 +1,18 @@
 import { Router } from 'express';
-import LeaderboardController from './controllers/Leaderboard';
-import MatchesController from './controllers/Matches';
-import TeamsController from './controllers/Teams';
-import UserController from './controllers/User';
-import { LeaderboardRepository,
+import {
+  LeaderboardController,
+  MatchesController,
+  TeamsController,
+  UserController,
+} from './controllers';
+import {
+  LeaderboardRepository,
   MatchesRepository,
   TeamsRepository,
-  UserRepository } from './repositories';
-import LeaderboardRouter from './routes/leaderboard.routes';
-import MatchesRouter from './routes/matches.routes';
-import TeamsRouter from './routes/teams.routes';
-import UserRouter from './routes/user.routes';
-import LeaderboardService from './services/Leaderboard';
-import MatchesService from './services/Matches';
-import TeamsService from './services/Teams';
-import UserService from './services/User';
+  UserRepository,
+} from './repositories';
+import { LeaderboardRouter, MatchesRouter, TeamsRouter, UserRouter } from './routes';
+import { LeaderboardService, MatchesService, TeamsService, UserService } from './services';
 
 export default class Factory {
   public static get userRouter() {
