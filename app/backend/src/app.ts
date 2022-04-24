@@ -26,6 +26,7 @@ class App {
     this.app.use('/login', Factory.userRouter);
     this.app.use('/teams', Factory.teamsRouter);
     this.app.use('/matches', Factory.matchesRouter);
+    this.app.use('/leaderboard', Factory.leaderboardRouter);
   }
 
   public start(PORT: string | number):void {
