@@ -36,17 +36,6 @@ export interface IMatchesLeaderboard {
   teamAway: { teamName: string; };
 }
 
-export interface TeamsGames {
-  id: number;
-  homeTeamId: number;
-  homeTeamGoals: number;
-  awayTeamId: number;
-  awayTeamGoals: number;
-  inProgress: boolean;
-  teamHome: string;
-  teamAway: string;
-}
-
 export interface ILeaderboard {
   name: string;
   totalPoints: number;
