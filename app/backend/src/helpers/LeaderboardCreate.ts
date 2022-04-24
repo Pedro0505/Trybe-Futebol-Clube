@@ -1,16 +1,17 @@
 import { ILeaderboard, IMatchesLeaderboard, ITeamsGames, Principals } from '../interfaces/helpers';
 import { ITeams } from '../interfaces/routes/team';
 
-export default class Leaderboard {
+export default abstract class Leaderboard {
   private _matches: IMatchesLeaderboard[];
 
   private _teams: ITeams[];
 
   private _side: Principals;
 
-  constructor(teams: ITeams[], matches:IMatchesLeaderboard[]) {
+  constructor(teams: ITeams[], matches:IMatchesLeaderboard[], side: Principals) {
     this._matches = matches;
     this._teams = teams;
+    this._side = side;
   }
 
   private matchesAll() {
@@ -74,22 +75,6 @@ export default class Leaderboard {
     ));
 
     return orderedLeaderboard;
-  }
-
-  public createHomeLeaderboard() {
-    this._side = 'homeTeamGoals';
-
-    const created = this.createLeaderboard();
-
-    return created;
-  }
-
-  public createAwayLeaderboard() {
-    this._side = 'awayTeamGoals';
-
-    const created = this.createLeaderboard();
-
-    return created;
   }
 
   protected createLeaderboard() {
