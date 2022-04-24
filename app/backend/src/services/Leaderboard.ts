@@ -12,9 +12,9 @@ export default class LeaderboardService {
   async createHomeLeaderboard() {
     const teams = await this._repository.getAllTeams();
     const matches = await this._repository.getAllMatches() as IMatchesLeaderboard[];
-    const createdLeaderboard = new LeaderboardCreate(teams, matches, 'homeTeamGoals');
-    const leaderboard = createdLeaderboard.createLeaderboard();
-    const orderLeaderboard = createdLeaderboard.orderLearderboard(leaderboard);
+    const createdLeaderboard = new LeaderboardCreate(teams, matches);
+    const leaderboard = createdLeaderboard.createHomeLeaderboard();
+    const orderLeaderboard = LeaderboardCreate.orderLearderboard(leaderboard);
 
     return orderLeaderboard;
   }
@@ -22,9 +22,9 @@ export default class LeaderboardService {
   async creatAwayLeaderboard() {
     const teams = await this._repository.getAllTeams();
     const matches = await this._repository.getAllMatches() as IMatchesLeaderboard[];
-    const createdLeaderboard = new LeaderboardCreate(teams, matches, 'awayTeamGoals');
-    const leaderboard = createdLeaderboard.createLeaderboard();
-    const orderLeaderboard = createdLeaderboard.orderLearderboard(leaderboard);
+    const createdLeaderboard = new LeaderboardCreate(teams, matches);
+    const leaderboard = createdLeaderboard.createAwayLeaderboard();
+    const orderLeaderboard = LeaderboardCreate.orderLearderboard(leaderboard);
 
     return orderLeaderboard;
   }

@@ -1,19 +1,16 @@
 import { ILeaderboard, IMatchesLeaderboard, ITeamsGames, Principals } from '../interfaces/helpers';
 import { ITeams } from '../interfaces/routes/team';
 
-export default class LeaderboardCreate {
+export default class Leaderboard {
   private _matches: IMatchesLeaderboard[];
 
   private _teams: ITeams[];
 
   private _side: Principals;
 
-  private _lint = '';
-
-  constructor(teams: ITeams[], matches:IMatchesLeaderboard[], side: Principals) {
+  constructor(teams: ITeams[], matches:IMatchesLeaderboard[]) {
     this._matches = matches;
     this._teams = teams;
-    this._side = side;
   }
 
   private matchesAll() {
@@ -26,14 +23,12 @@ export default class LeaderboardCreate {
       inProgress: m.inProgress,
       teamHome: m.teamHome.teamName,
       teamAway: m.teamAway.teamName,
-    })).filter((mat) => !mat.inProgress);
+    }));
 
     return serializeMatches;
   }
 
-  private goals(principals: Principals, teamGames: ITeamsGames[]) {
-    this._lint = 'chato';
-
+  static goal(principals: Principals, teamGames: ITeamsGames[]) {
     return teamGames.reduce((acc, cur) => acc + cur[principals], 0);
   }
 
@@ -45,9 +40,7 @@ export default class LeaderboardCreate {
     return points;
   }
 
-  private calculateEfficiency(points: number, games: number) {
-    this._lint = 'chato';
-
+  static calculateEfficiency(points: number, games: number) {
     const efficiency = ((points / (games * 3)) * 100).toFixed(2);
 
     return +efficiency;
@@ -71,9 +64,7 @@ export default class LeaderboardCreate {
     return matchesResults;
   }
 
-  public orderLearderboard(leaderboard: ILeaderboard[]) {
-    this._lint = 'chato';
-
+  static orderLearderboard(leaderboard: ILeaderboard[]) {
     const orderedLeaderboard = leaderboard.sort((a: ILeaderboard, b: ILeaderboard) => (
       b.totalPoints - a.totalPoints
       || b.totalVictories - a.totalVictories
@@ -85,11 +76,27 @@ export default class LeaderboardCreate {
     return orderedLeaderboard;
   }
 
-  public createLeaderboard() {
+  public createHomeLeaderboard() {
+    this._side = 'homeTeamGoals';
+
+    const created = this.createLeaderboard();
+
+    return created;
+  }
+
+  public createAwayLeaderboard() {
+    this._side = 'awayTeamGoals';
+
+    const created = this.createLeaderboard();
+
+    return created;
+  }
+
+  protected createLeaderboard() {
     const result = this._teams.map((e) => {
       const teamGames = this.matchesAll().filter((m) => (m[this.deciderSide()] === e.teamName));
       const totalPoints = this.sumTotalPoints(teamGames);
-      const outherSide = this._side.includes('home') ? 'awayTeamGoals' : 'homeTeamGoals';
+      const second = this._side.includes('home') ? 'awayTeamGoals' : 'homeTeamGoals';
 
       return {
         name: e.teamName,
@@ -98,10 +105,10 @@ export default class LeaderboardCreate {
         totalVictories: this.results(teamGames).filter((wins) => wins === 3).length,
         totalDraws: this.results(teamGames).filter((draw) => draw === 1).length,
         totalLosses: this.results(teamGames).filter((lose) => lose === 0).length,
-        goalsFavor: this.goals(this._side, teamGames),
-        goalsOwn: this.goals(outherSide, teamGames),
-        goalsBalance: this.goals(this._side, teamGames) - this.goals(outherSide, teamGames),
-        efficiency: this.calculateEfficiency(totalPoints, teamGames.length),
+        goalsFavor: Leaderboard.goal(this._side, teamGames),
+        goalsOwn: Leaderboard.goal(second, teamGames),
+        goalsBalance: Leaderboard.goal(this._side, teamGames) - Leaderboard.goal(second, teamGames),
+        efficiency: Leaderboard.calculateEfficiency(totalPoints, teamGames.length),
       };
     });
 

@@ -8,6 +8,7 @@ export default class LeaderboardRepository {
 
   async getAllMatches(): Promise<IMatchesTeams[]> {
     const matches = await this._matchesModel.findAll({
+      where: { inProgress: false },
       include: [
         { model: Teams, as: 'teamHome', attributes: { exclude: ['id'] } },
         { model: Teams, as: 'teamAway', attributes: { exclude: ['id'] } },
