@@ -1,6 +1,6 @@
 import { IMatchesLeaderboard } from '../interfaces/helpers';
 import { ITeams } from '../interfaces/routes/team';
-import Leaderboard from './LeaderboardCreate';
+import Leaderboard from './Leaderboard';
 
 export default class LeaderboardAway extends Leaderboard {
   constructor(teams: ITeams[], matches: IMatchesLeaderboard[]) {

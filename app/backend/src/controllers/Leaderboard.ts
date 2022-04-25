@@ -19,4 +19,10 @@ export default class LeaderboardController {
 
     return res.status(200).json(leaderboard);
   };
+
+  public createLeaderboardAll = async (_req: Request, res: Response) => {
+    const leaderboard = await this._service.createAllLeaderboard();
+
+    return res.status(200).json(leaderboard);
+  };
 }

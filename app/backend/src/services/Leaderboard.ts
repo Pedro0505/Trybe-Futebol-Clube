@@ -2,6 +2,7 @@ import { LeaderboardRepository } from '../repositories';
 import { IMatchesLeaderboard } from '../interfaces/helpers';
 import LeaderboardHome from '../helpers/LeaderboardHome';
 import LeaderboardAway from '../helpers/LeaderboardAway';
+import LeaderboardAll from '../helpers/LeaderboardAll';
 
 export default class LeaderboardService {
   private _repository: LeaderboardRepository;
@@ -22,6 +23,14 @@ export default class LeaderboardService {
     const teams = await this._repository.getAllTeams();
     const matches = await this._repository.getAllMatches() as IMatchesLeaderboard[];
     const createdLeaderboard = new LeaderboardAway(teams, matches).createAwayLeaderboard();
+
+    return createdLeaderboard;
+  }
+
+  public async createAllLeaderboard() {
+    const teams = await this._repository.getAllTeams();
+    const matches = await this._repository.getAllMatches() as IMatchesLeaderboard[];
+    const createdLeaderboard = new LeaderboardAll(teams, matches).createLeaderboardAll();
 
     return createdLeaderboard;
   }
