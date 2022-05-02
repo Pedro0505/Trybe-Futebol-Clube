@@ -285,7 +285,7 @@ module.exports = {
 
 **⚠️ Variáveis de ambiente além das especificadas acima não são suportadas, pois não são esperadas pelo avaliador do projeto. ⚠️**
 
-**⚠️ Atenção especial para as variáveis de conexão com o banco que são utilizadas pelos testes dentro da pasta `__tests__`: as variáveis de `port` e `password` devem ser as mesmas definidas no `docker-compose.yml`, ou seja, devem coincidir com as variáveis configuradas para o container do banco. Então se você alterar os valores das variáveis no `docker-compose.yml`, lembre-se de alterar também no arquivo `__tests__/config/constants.js`. ⚠️
+**⚠️  Atenção especial para as variáveis de conexão com o banco que são utilizadas pelos testes dentro da pasta `__tests__`: as variáveis de `port` e `password` devem ser as mesmas definidas no `docker-compose.yml`, ou seja, devem coincidir com as variáveis configuradas para o container do banco. Então se você alterar os valores das variáveis no `docker-compose.yml`, lembre-se de alterar também no arquivo `__tests__/config/constants.js`. ⚠️**
 
 #### Chave JWT e criptografia de senhas:
 
