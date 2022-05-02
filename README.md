@@ -235,6 +235,10 @@ Você também pode instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
 
 O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
 
+#### ⚠️ **Utilize o `node` na versão 16** ⚠️
+
+Não utilizar a versão 16 do `node` faz com  que alguns scripts utilizado no projeto falharem.
+
 #### ⚠️ **Inicie seu `docker-compose` antes de testar localmente!** ⚠️
 
 Os testes vão utilizar sua aplicação do compose para fazer as validações, por tanto **é essencial que ele esteja funcionando corretamente** para que os testes passem!
