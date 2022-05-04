@@ -22,7 +22,7 @@ describe('Testando a rota de matches', () => {
     });
   
     after(() => {
-      (Matches.findAll as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Testando se a rota retorna todas as partidas', async () => {
@@ -43,7 +43,7 @@ describe('Testando a rota de matches', () => {
     });
   
     after(() => {
-      (Matches.findAll as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Testando se todas as partidas estão em progresso',async () => {
@@ -65,7 +65,7 @@ describe('Testando a rota de matches', () => {
     });
   
     after(() => {
-      (Matches.findAll as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Testando se todas as partidas estão terminadas',async () => {
@@ -89,9 +89,7 @@ describe('Testando a rota de matches', () => {
     });
   
     after(() => {
-      (Users.findOne as sinon.SinonStub).restore();
-      (Teams.findAll as sinon.SinonStub).restore();
-      (Matches.create as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Caso de sucesso da criacão da matche', async () => {
@@ -131,7 +129,7 @@ describe('Testando a rota de matches', () => {
     });
   
     after(() => {
-      (Matches.update as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Caso de sucesso de terminar uma partida', async () => {
@@ -149,7 +147,7 @@ describe('Testando a rota de matches', () => {
     });
   
     after(() => {
-      (Matches.update as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Caso de sucesso de terminar uma partida', async () => {

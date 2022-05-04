@@ -18,7 +18,7 @@ describe('Testando a rota de teams', () => {
     });
   
     after(() => {
-      (Teams.findAll as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Testando caso de sucesso', async () => {
@@ -39,7 +39,7 @@ describe('Testando a rota de teams', () => {
     });
   
     after(() => {
-      (Teams.findOne as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Testando caso de sucesso', async () => {
@@ -59,7 +59,7 @@ describe('Testando a rota de teams', () => {
     });
   
     after(() => {
-      (Teams.findOne as sinon.SinonStub).restore();
+      sinon.restore();
     });
 
     it('Quando passa um id que não existe', async () => {
