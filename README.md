@@ -902,7 +902,7 @@ Para o desenvolvimento, o time de produto disponibilizou um *Diagrama de Entidad
   - caso algum dos times não esteja cadastrado no banco de dados, deve-se retornar o seguinte erro:
 
   ```json
-  { "message": "Team not found" }
+  { "message": "There is no team with such id!" }
   ```
 
 ### Editar Partidas
