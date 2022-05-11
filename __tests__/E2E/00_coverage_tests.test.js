@@ -1,7 +1,7 @@
 const testCoverage = require('../utils/testCoverage');
 const { getRequirement } = require('../utils/util');
 
-const backEndCoverage = async () => testCoverage('backend');
+const backEndCoverage = async () => testCoverage('app_backend');
 
 let backEnd;
 
