@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const { condExec } = require('../utils/util');
 
 const { sequelizeDefs } = require('./constants');
-const { docker, dockerFind } = require('../utils/commands')
+const { docker } = require('../utils/commands');
 
 async function dbReset() {
   return condExec({

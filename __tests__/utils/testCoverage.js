@@ -1,30 +1,23 @@
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
-const { readFile } = require('fs').promises;
-const { resolve } = require('path');
+const { condExec } = require('./util');
+const { docker } = require('../utils/commands');
 
 const testCoverage = async (app) => {
-  const appPath = resolve(__dirname, '..', '..', 'app', app);
+  const testCommand = 'npm run test:coverage:json &> /dev/null';
+  const validateCommand = 'cat ./coverage/coverage-summary.json';
 
-  await exec(`npm --prefix ${appPath} run test:coverage:json &> /dev/null`)
-    .catch((error) => console
-      .error(`Erro na execução do teste de cobertura no "${app}":\n"${error.message || ''}"`));
+  const { stdout } = await condExec({
+    command: docker.exec(app, testCommand),
+    validate: docker.exec(app, validateCommand),
+    include: '{"total": {"lines":{"total"',
+  });
 
-  const path = resolve(appPath, 'coverage', 'coverage-summary.json');
+  console
+    .warn(`Rodando o comando '${testCommand}' na aplicação backend para gerar e colher a cobertura de testes com '${validateCommand}':\n\n`, JSON.parse(stdout || {}));
 
-  const { skipped, pct, covered } = await readFile(path, 'utf-8')
-    .then((coverageTxt) => JSON.parse(coverageTxt))
-    .then(({ total: { lines } }) => lines)
-    .catch((error) => {
-      console.error(error.message);
-      return ({ skipped: null, pct: null, covered: null });
-    });
-
-  await exec(`rm -rf ${resolve(appPath, 'coverage')} ${resolve(appPath, '.nyc_output')}`)
-    .catch(() => true);
+  const { total: { lines: { skipped, pct, covered } } } = JSON.parse(stdout);
 
   return {
-    path,
+    path: app,
     skipped,
     pct,
     covered,

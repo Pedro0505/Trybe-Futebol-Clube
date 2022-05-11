@@ -134,9 +134,9 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
 
   - Projeto individual;
 
-  - Serão `4` dias de projeto;
+  - Serão `7` dias de projeto;
 
-  - Data de entrega para avaliação final do projeto: `05/05/2022 14:00`.
+  - Data de entrega para avaliação final do projeto: `12/05/2022 14:00`.
 
 ---
 
@@ -235,12 +235,19 @@ Você também pode instalar o plugin do `ESLint` no `VSCode`, bastar ir em exten
 
 O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
 
+#### ⚠️ **Utilize o `node` na versão 16** ⚠️
+
+Não utilizar a versão 16 do `node` faz com  que alguns scripts utilizado no projeto falharem.
+
 #### ⚠️ **Inicie seu `docker-compose` antes de testar localmente!** ⚠️
 
 Os testes vão utilizar sua aplicação do compose para fazer as validações, por tanto **é essencial que ele esteja funcionando corretamente** para que os testes passem!
 
 - Para isso, garanta que as aplicações, tanto do back, quanto do front-end, possuem arquivos `Dockerfile` válidos;
 - Utilize os scripts de apoio `npm run compose:up` / `npm run compose:down`, para facilitar a execução do seu *compose*.
+
+#### ⚠️ Variáveis 
+
 
 #### Variáveis de ambiente
 
@@ -277,6 +284,8 @@ module.exports = {
 **Com elas que iremos conseguir conectar ao banco do avaliador automático**
 
 **⚠️ Variáveis de ambiente além das especificadas acima não são suportadas, pois não são esperadas pelo avaliador do projeto. ⚠️**
+
+**⚠️  Atenção especial para as variáveis de conexão com o banco que são utilizadas pelos testes dentro da pasta `__tests__`: as variáveis de `port` e `password` devem ser as mesmas definidas no `docker-compose.yml`, ou seja, devem coincidir com as variáveis configuradas para o container do banco. Então se você alterar os valores das variáveis no `docker-compose.yml`, lembre-se de alterar também no arquivo `__tests__/config/constants.js`. ⚠️**
 
 #### Chave JWT e criptografia de senhas:
 
@@ -893,7 +902,7 @@ Para o desenvolvimento, o time de produto disponibilizou um *Diagrama de Entidad
   - caso algum dos times não esteja cadastrado no banco de dados, deve-se retornar o seguinte erro:
 
   ```json
-  { "message": "Team not found" }
+  { "message": "There is no team with such id!" }
   ```
 
 ### Editar Partidas
