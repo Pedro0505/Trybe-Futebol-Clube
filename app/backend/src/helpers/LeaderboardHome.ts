@@ -7,10 +7,31 @@ export default class LeaderboardHome extends Leaderboard {
     super(teams, matches, 'homeTeamGoals');
   }
 
-  public createHomeLeaderboard() {
-    const created = this.createLeaderboard();
+  private createHomeLeaderboard() {
+    const result = this._teams.map((e) => {
+      const teamGames = this.matchesAll().filter((m) => (m.teamHome === e.teamName));
+      const totalPoints = this.sumTotalPoints(teamGames);
 
-    const ordered = Leaderboard.orderLearderboard(created);
+      return {
+        name: e.teamName,
+        totalPoints,
+        totalGames: teamGames.length,
+        totalVictories: this.results(teamGames).filter((wins) => wins === 3).length,
+        totalDraws: this.results(teamGames).filter((draw) => draw === 1).length,
+        totalLosses: this.results(teamGames).filter((lose) => lose === 0).length,
+        goalsFavor: Leaderboard.goal('homeTeamGoals', teamGames),
+        goalsOwn: Leaderboard.goal('awayTeamGoals', teamGames),
+        goalsBalance: Leaderboard
+          .goal('homeTeamGoals', teamGames) - Leaderboard.goal('awayTeamGoals', teamGames),
+        efficiency: Leaderboard.calculateEfficiency(totalPoints, teamGames.length),
+      };
+    });
+
+    return result;
+  }
+
+  public homeLeaderboard() {
+    const ordered = Leaderboard.orderLearderboard(this.createHomeLeaderboard());
 
     return ordered;
   }

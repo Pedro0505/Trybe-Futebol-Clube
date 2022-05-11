@@ -14,7 +14,7 @@ export default class LeaderboardService {
   public async createHomeLeaderboard() {
     const teams = await this._repository.getAllTeams();
     const matches = await this._repository.getAllMatches() as IMatchesLeaderboard[];
-    const createdLeaderboard = new LeaderboardHome(teams, matches).createHomeLeaderboard();
+    const createdLeaderboard = new LeaderboardHome(teams, matches).homeLeaderboard();
 
     return createdLeaderboard;
   }
@@ -22,7 +22,7 @@ export default class LeaderboardService {
   public async creatAwayLeaderboard() {
     const teams = await this._repository.getAllTeams();
     const matches = await this._repository.getAllMatches() as IMatchesLeaderboard[];
-    const createdLeaderboard = new LeaderboardAway(teams, matches).createAwayLeaderboard();
+    const createdLeaderboard = new LeaderboardAway(teams, matches).awayLeaderboard();
 
     return createdLeaderboard;
   }

@@ -15,8 +15,8 @@ export default class LeaderboardAll {
   }
 
   private schemaLeaderboard() {
-    const away = this._away.createAwayLeaderboard().sort((a, b) => (a.name < b.name ? -1 : 1));
-    const home = this._home.createHomeLeaderboard().sort((a, b) => (a.name < b.name ? -1 : 1));
+    const away = this._away.awayLeaderboard().sort((a, b) => (a.name < b.name ? -1 : 1));
+    const home = this._home.homeLeaderboard().sort((a, b) => (a.name < b.name ? -1 : 1));
 
     return away.map((t, i) => {
       const totalPoints = t.totalPoints + home[i].totalPoints;

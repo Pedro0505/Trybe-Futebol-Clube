@@ -2,9 +2,9 @@ import { ILeaderboard, IMatchesLeaderboard, ITeamsGames, Principals } from '../i
 import { ITeams } from '../interfaces/routes/team';
 
 export default abstract class Leaderboard {
-  private _matches: IMatchesLeaderboard[];
+  protected _matches: IMatchesLeaderboard[];
 
-  private _teams: ITeams[];
+  protected _teams: ITeams[];
 
   private _side: Principals;
 
@@ -14,7 +14,7 @@ export default abstract class Leaderboard {
     this._side = side;
   }
 
-  private matchesAll() {
+  protected matchesAll() {
     const serializeMatches = this._matches.map((m) => ({
       id: m.id,
       homeTeamId: m.homeTeam,
@@ -33,7 +33,7 @@ export default abstract class Leaderboard {
     return teamGames.reduce((acc, cur) => acc + cur[principals], 0);
   }
 
-  private sumTotalPoints(teamGames: ITeamsGames[]) {
+  protected sumTotalPoints(teamGames: ITeamsGames[]) {
     const listPoints = this.results(teamGames);
 
     const points = listPoints.reduce((acc, cur) => acc + cur, 0);
@@ -47,11 +47,11 @@ export default abstract class Leaderboard {
     return +efficiency;
   }
 
-  private deciderSide() {
+  protected deciderSide() {
     return this._side.includes('home') ? 'teamHome' : 'teamAway';
   }
 
-  private results(teamGames: ITeamsGames[]) {
+  protected results(teamGames: ITeamsGames[]) {
     const outherSide = this._side.includes('home') ? 'awayTeamGoals' : 'homeTeamGoals';
 
     const matchesResults = teamGames.reduce((acc: number[], cur) => {
@@ -75,28 +75,5 @@ export default abstract class Leaderboard {
     ));
 
     return orderedLeaderboard;
-  }
-
-  protected createLeaderboard() {
-    const result = this._teams.map((e) => {
-      const teamGames = this.matchesAll().filter((m) => (m[this.deciderSide()] === e.teamName));
-      const totalPoints = this.sumTotalPoints(teamGames);
-      const second = this._side.includes('home') ? 'awayTeamGoals' : 'homeTeamGoals';
-
-      return {
-        name: e.teamName,
-        totalPoints,
-        totalGames: teamGames.length,
-        totalVictories: this.results(teamGames).filter((wins) => wins === 3).length,
-        totalDraws: this.results(teamGames).filter((draw) => draw === 1).length,
-        totalLosses: this.results(teamGames).filter((lose) => lose === 0).length,
-        goalsFavor: Leaderboard.goal(this._side, teamGames),
-        goalsOwn: Leaderboard.goal(second, teamGames),
-        goalsBalance: Leaderboard.goal(this._side, teamGames) - Leaderboard.goal(second, teamGames),
-        efficiency: Leaderboard.calculateEfficiency(totalPoints, teamGames.length),
-      };
-    });
-
-    return result;
   }
 }
