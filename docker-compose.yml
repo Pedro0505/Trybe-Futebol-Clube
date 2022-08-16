@@ -16,22 +16,22 @@ services:
     ports:
       - 3001:3001
     depends_on:
-      db:
+      db_trybe_futebol_clube:
         condition: service_healthy
     environment:
       - PORT=3001
       - DB_USER=root
       - DB_PASS=123456
-      - DB_HOST=db
+      - DB_HOST=db_trybe_futebol_clube
       - DB_NAME=TRYBE_FUTEBOL_CLUBE
       - DB_PORT=3306
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
       retries: 5
-  db:
+  db_trybe_futebol_clube:
     image: mysql:8.0.21
-    container_name: db
+    container_name: db_trybe_futebol_clube
     ports:
       - 3002:3306
     environment:
