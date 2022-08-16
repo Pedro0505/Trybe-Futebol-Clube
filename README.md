@@ -7,9 +7,7 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
 <details>
   <summary><b>Node</b></summary><br>
 
-  ***⚠️ Para rodar localmente é necessário ter o PostgreSql instalado localmente ⚠️***
-
-  ***Obs: Para usar localmente deve ser preenchido com as informações necessárias no '.env', conforme está escrito no '.env.example'***
+  ***⚠️ Para rodar localmente é necessário ter o MySql instalado localmente ⚠️***
 
   Clone o projeto
 
@@ -32,6 +30,13 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   Inicie o servidor
 
   ```bash
+    cd app/backend
+    npm start
+  ```
+  
+  Inicie o frontend
+
+  ```bash
     cd app/frontend
     npm start
   ```
@@ -39,8 +44,9 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   Acesse a aplicação usando o seguinte endereço
 
   ```bash
-    localhost:3001
+    localhost:3000
   ```
+
 </details>
 
 # Stacks 📚
