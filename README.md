@@ -30,6 +30,13 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   Inicie o servidor
 
   ```bash
+    cd app/backend
+    npm start
+  ```
+  
+  Inicie o frontend
+
+  ```bash
     cd app/frontend
     npm start
   ```
@@ -39,6 +46,7 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   ```bash
     localhost:3000
   ```
+
 </details>
 
 # Stacks 📚
