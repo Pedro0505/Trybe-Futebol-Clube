@@ -5,9 +5,51 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
 # Iniciando a aplicação
 
 <details>
+  <summary><b>Iniciando o projeto com docker 🐳</b></summary><br>
+
+  ***⚠️ Para garantir um bom funcionamento é necessário que tenha instalado o docker e o docker-compose nas versões 20.10.16 e 1.29 ou superior respectivamente⚠️***
+  
+  <br />
+
+  1. Clone o projeto
+
+  ```bash
+    git clone git@github.com:Pedro0505/Trybe-Futebol-Clube.git
+  ```
+
+  2. Entre no diretório do projeto
+
+  ```bash
+    cd Trybe-Futebol-Clube
+  ```
+
+  3. Suba os containers
+
+  ```bash
+    docker-compose up --build -d
+  ```
+
+  5. Quando o processo dos containers estiver acabado acesse a aplicação usando o seguinte endereço
+
+  ```bash
+    http://localhost:3000
+  ```
+
+  6. Para derrubar os containers
+
+  ```bash
+    docker-compose down --rmi all --volumes --remove-orphans
+  ```
+</details>
+
+<details>
   <summary><b>Node</b></summary><br>
 
   ***⚠️ Para rodar localmente é necessário ter o MySql instalado localmente ⚠️***
+
+  ***⚠️ Obs: Para o orm funcionar deve ser preenchido o arquivo '.env' com as informações necessárias, as chaves que precisam ser colocadas estão no arquivo '.env.example' ⚠️***
+
+  <br />
 
   Clone o projeto
 
@@ -30,14 +72,14 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   Inicie o servidor
 
   ```bash
-    cd app/backend
+    cd backend
     npm start
   ```
   
   Inicie o frontend
 
   ```bash
-    cd app/frontend
+    cd frontend
     npm start
   ```
 
@@ -46,7 +88,6 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   ```bash
     localhost:3000
   ```
-
 </details>
 
 # Stacks 📚
