@@ -37,7 +37,7 @@ Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma
   Acesse a aplicação usando o seguinte endereço
 
   ```bash
-    localhost:3001
+    localhost:3000
   ```
 </details>
 
