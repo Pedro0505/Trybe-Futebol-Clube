@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run install:apps",
-    "install:apps": "./apps_install.sh",
+    "install:apps": "./app_install.sh",
     "pretest": "(cd ./app/backend && /bin/sh tsc_eval.sh)",
     "posttest": "(cd ./app/backend && npm run test:coverage)",
     "test": "jest -i --forceExit --verbose",
