@@ -2,6 +2,8 @@
 
 Projeto de avaliação do módulo de back-end do da Trybe onde eu desenvolvi uma Api para uma aplicação front-end já preparada, onde minha Api o alimentava com as informações vindo do banco de dados.
 
+![](https://github.com/Pedro0505/my-portfolio/blob/main/src/images/trybe-futebol-club.gif?raw=true)
+
 # Iniciando a aplicação
 
 <details>
